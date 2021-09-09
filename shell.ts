@@ -30,8 +30,9 @@ import { CurrentUser } from './auth';
 
 export type HttpClient = AxiosInstance;
 
+//Used in flow
 export type ZoomInfo = {
-  rateList: number[];
+  rateList: number[]; 
   maxRate: number;
   minRate: number;
   currentRate: number;
@@ -192,13 +193,13 @@ export type BotInProject = {
 
 export type ProjectContext = {
   botName: string;
-  projectId: string;
+  projectId: string; //Used in form, ui-plugins[lg, luis, orchestrator, cross-trained]
   projectCollection: BotInProject[]; // Not used in form, flow, or ui-plugins
-  dialogs: DialogInfo[];
-  topics: DialogInfo[];
-  dialogSchemas: DialogSchemaFile[];
-  lgFiles: LgFile[];
-  luFiles: LuFile[];
+  dialogs: DialogInfo[]; //Used in flow, ui-plugins[select-dialog, schema-editor]
+  topics: DialogInfo[]; //Used in flow, ui-plugins[select-dialog]
+  dialogSchemas: DialogSchemaFile[]; //Used in ui-plugins[select-dialog, schema-editor]
+  lgFiles: LgFile[]; //Used in ui-plugins[lg]
+  luFiles: LuFile[]; //Used in form, ui-plugins[luis, orchestrator, cross-trained]
   luFeatures: ILUFeaturesConfig; // Used in Lu plugin
   qnaFiles: QnAFile[]; // Used in form, cross-trained ui-plugin, and orchestrator ui-plugin
   skills: Record<string, Skill>; // Select skill ui-plugin
@@ -230,15 +231,15 @@ export type DialogEditingContextApi = {
 };
 
 export type DialogEditingContext = {
-  currentDialog: DialogInfo;
-  designerId: string;
-  dialogId: string;
-  clipboardActions: any[];
-  focusedEvent: string;
-  focusedActions: string[];
-  focusedSteps: string[];
-  focusedTab?: string;
-  focusPath: string;
+  currentDialog: DialogInfo; //Used in form, ui-plugins[composer, cross-trained, lg, luis, orchestrator, select-dialog]
+  designerId: string; //Used in ui-plugins[lg, luis, prompts]
+  dialogId: string; //Used in flow, ui-plugins[schema-editor]
+  clipboardActions: any[]; //Used in flow
+  focusedEvent: string; //Used in flow
+  focusedActions: string[]; //Used in flow
+  focusedSteps: string[]; //Used in form
+  focusedTab?: string; //Used in form, flow
+  focusPath: string; // Not used anywhere
 };
 
 export type ShellData = ApplicationContext & AuthContext & ProjectContext & DialogEditingContext;
